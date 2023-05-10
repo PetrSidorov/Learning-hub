@@ -16,4 +16,10 @@ class ElveProcessor {
 
   }
 
+   function sortArrayFromBiggest(array) {
+    return array.sort(function compareNumbersDesc(a, b) {
+      return b - a;
+    });
+  }
+
 export default ElveProcessor;

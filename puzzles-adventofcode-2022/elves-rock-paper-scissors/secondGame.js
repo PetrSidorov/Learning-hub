@@ -6,11 +6,11 @@
 
     export function secondGame(move1, move2) {
         // console.log(move1, move2);
-        const elveMoveMap = {
-            A: "Rock",
-            B: "Paper",
-            C: "Scissors"
-          };
+        // const elveMoveMap = {
+        //     A: "Rock",
+        //     B: "Paper",
+        //     C: "Scissors"
+        //   };
 
         const myMoveMap = {
             X: "Lose",
