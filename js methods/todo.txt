@@ -1,0 +1,33 @@
+push +
+pop +
+shift + 
+unshift +
+concat +
+join +
+slice +
+splice
+forEach
+map
+filter
+reduce
+find
+sort
+reverse
+includes +
+indexOf
+lastIndexOf
+every
+some
+fill
+findIndex
+flat
+flatMap
+from
+isArray
+keys
+values
+entries
+reduceRight
+copyWithin
+toLocaleString
+toString

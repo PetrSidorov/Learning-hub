@@ -1,0 +1,5 @@
+regex exercises
+local storage
+try - catch - exceptions
+fetch api / http requests
+iterables
