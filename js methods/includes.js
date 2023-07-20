@@ -1,3 +1,4 @@
+// ready
 if (!Array.prototype.myIncludes) {
   Array.prototype.myIncludes = function (searchElement, startIndex = 0) {
     let match = false;

@@ -22,6 +22,7 @@ function createT(data, arr = []){
 }
 
 createT(data, {})
+
 storage.unshift(['test']);
 function textTasksTodata(tasks){
     for (let task of tasks) {

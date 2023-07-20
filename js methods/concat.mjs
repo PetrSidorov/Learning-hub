@@ -1,23 +1,17 @@
-Array.prototype.myConcat = function(...arrays){
-    console.log(arrays);
-    // for (let i = 0; i < arrays.length; i++){
-    //     return runConcat.call(this, arrays[i]);
-    // }
-    return arrays.reduce(runConcat.call(this, arrays[0]))
-    function runConcat(arrayToAdd){
+// ready
+Array.prototype.myConcat = function(...arraysToAdd){
+    function concatArray(arrayOne, arrayToAdd){
         const newArray = []
-        for (let i = 0; i < this.length + arrayToAdd.length; i++){
-            newArray[i] = this[i];
-            if (!this.length){
-                newArray[i] = arrayToAdd[i];
-            } else
-            if (i >= this.length){
-                newArray[i] = arrayToAdd[i - arrayToAdd.length];
-            }
+        for (let i = 0; i < arrayOne.length; i++){
+            newArray[i] = arrayOne[i]
         }
-    
+
+        for (let i = 0; i < arrayToAdd.length; i++){
+            newArray[i + arrayOne.length] = arrayToAdd[i]
+        }
         return newArray;
     }
+    return arraysToAdd.reduce((accumulator, currentValue) => concatArray(accumulator, currentValue), this)
 }
 
 // const array1 = ['a', 'b', 'c'];
@@ -49,3 +43,8 @@ const array4 = array1.myConcat(array2, array3);
 console.log(array4);
 // Expected output: Array ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
 
+// const array1 = ['a', 'b', 'c','d', 'e', 'f'];
+// const array3 = ['g', 'h', 'i'];
+// const array4 = array1.myConcat(array3);
+
+// console.log(array4);
