@@ -1,7 +1,8 @@
+// ready  - unchecked
 Array.prototype.myShift = function(){
     let originalArrayCopy = [...this];
     this.length = 0;
-    for (i = 1; i < originalArrayCopy.length; i++) {
+    for (let i = 1; i < originalArrayCopy.length; i++) {
         this.push(originalArrayCopy[i]);
     }
 
@@ -12,3 +13,7 @@ Array.prototype.myShift = function(){
 const array1 = [1, 2, 3];
 array1.myShift();
 console.log(array1);
+
+// const array2 = [];
+// const test = array2.shift();
+// console.log(test);

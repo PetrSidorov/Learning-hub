@@ -1,8 +1,18 @@
+// ready - unchecked
 Array.prototype.myPop = function(){
-    this.length -= 1;
-    return this[this.length - 1];
+    const lastEl = this[this.length - 1];
+    if (this.length != 0) {
+        this.length -= 1;
+    }
+    
+    return lastEl;
 }
 
-let test = [1,2,3];
-let check = test.myPop();
+// let test = [1,2,3];
+// let check = test.myPop();
+// console.log(test)
+
+let empty = [];
+
+let test = empty.myPop();
 console.log(test)

@@ -1,11 +1,17 @@
+// 
 Array.prototype.myReverse = function() {
-    let array = this;
-    let reversedArray = []
-    for (let i = array.length; i >=0; i-- ) {
-        reversedArray.push(...array.slice(i, i + 1));
+    let array = this.concat();
+    // let reversedArray = []
+    for (let i = array.length - 1; i > 0; i-- ) {
+        // i == array.length - 1 ? i = array.length - : i;
+        console.log('i', i);
+        console.log('this[i]', this[i]);
+        console.log('array[array.length - i]', array[array.length - i]);
+        // reversedArray.push(...array.slice(i, i + 1));
+        this[i] = array[array.length - i - 1];
     }
-    return reversedArray
+    return this
     
 }
 
-console.log([1,2,3,4].myReverse());
+console.log([7,13,30,45].myReverse());

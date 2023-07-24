@@ -8,9 +8,9 @@ function o_0(table){
     // let sheesh = '(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧'
 }
 
-let tableFlipping = o_0('︵ ┻━┻');
-'┬─┬ノ(ಠ_ಠノ)'
-'(╯°□°）╯︵ ┻━┻'
+// let tableFlipping = o_0('︵ ┻━┻');
+
+
 console.log(tableFlipping);
 // if tableFlipping contains table make guy happy ?
 
@@ -26,3 +26,8 @@ console.log(tableFlipping);
 // function ù_ù() {} 
 // function î_î() {} 
 // function ǎ_ǎ() {} 
+
+
+'┬─┬ノ(ಠ_ಠノ)'
+
+'(╯°□°）╯︵ ┻━┻'

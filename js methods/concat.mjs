@@ -12,6 +12,18 @@ Array.prototype.myConcat = function(...arraysToAdd){
         return newArray;
     }
     return arraysToAdd.reduce((accumulator, currentValue) => concatArray(accumulator, currentValue), this)
+
+
+    var array = [];
+
+    for (let arr of arraysToAdd) {
+        // for (let el of arr) {
+            // array.push(el);
+        // }
+        array.push(...arr);
+    }
+
+    return array;
 }
 
 // const array1 = ['a', 'b', 'c'];
