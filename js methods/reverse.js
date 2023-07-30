@@ -1,16 +1,11 @@
-// 
+ // TODO: check with corner cases
 Array.prototype.myReverse = function() {
     let array = this.concat();
     // let reversedArray = []
-    for (let i = array.length - 1; i > 0; i-- ) {
-        // i == array.length - 1 ? i = array.length - : i;
-        console.log('i', i);
-        console.log('this[i]', this[i]);
-        console.log('array[array.length - i]', array[array.length - i]);
-        // reversedArray.push(...array.slice(i, i + 1));
+    for (let i = 0; i < array.length; i++ ) {
         this[i] = array[array.length - i - 1];
     }
-    return this
+    return this;
     
 }
 

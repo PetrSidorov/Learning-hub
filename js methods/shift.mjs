@@ -1,4 +1,5 @@
 // ready  - unchecked
+// TODO: refactor, remove originalArrayCopy
 Array.prototype.myShift = function(){
     let originalArrayCopy = [...this];
     this.length = 0;
@@ -9,7 +10,7 @@ Array.prototype.myShift = function(){
     return originalArrayCopy[0];
 }
 
-// why it works here:
+
 const array1 = [1, 2, 3];
 array1.myShift();
 console.log(array1);

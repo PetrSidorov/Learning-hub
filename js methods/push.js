@@ -1,4 +1,4 @@
-// ready - unchecked
+// ready
 Array.prototype.myPush = function(...els) {
     for (let el of els) {
         this[this.length] = el;

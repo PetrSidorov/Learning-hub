@@ -1,11 +1,10 @@
-// ready - unchecked
+// ready
+// TODO: refactor transformToString
 Array.prototype.myJoin = function(separator) {
     function transformToString(element){
         if (!element){
             element = '';
         }
-
-
         return String(element);
     }
 
@@ -13,17 +12,15 @@ Array.prototype.myJoin = function(separator) {
         separator = ',';
     }
 
-    // if (this.length == 0){
-    //     string = '';
-    // } else {
-        let string = '';
-        for (let i = 0; i < this.length; i++) {
-            string += transformToString(this[i]);
+    separator = String(separator);
+
+    let string = '';
+    for (let i = 0; i < this.length; i++) {
+        string += transformToString(this[i]);
             if (i != this.length - 1){
-                string += String(separator);
-            }
+                string += separator;
         }
-    // }
+    }
     return string;
 }
 

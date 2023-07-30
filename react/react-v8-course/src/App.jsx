@@ -1,10 +1,10 @@
 import { createRoot } from "react-dom/client";
 import SearchParams from "./SearchParam";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { Queryclient, QueryclientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Details from "./Details";
 
-const queryClient = new Queryclient({
+const queryClient = new QueryClient({
     defaltOptions: {
         queries: {
             stateTime: Infinity,
@@ -16,7 +16,7 @@ const queryClient = new Queryclient({
 const App = () => {
     return (
         <BrowserRouter>
-            <QueryclientProvider client={queryClient}>
+            <QueryClientProvider client={queryClient}>
                 <header>
                 <Link to="/">Adopt me!</Link>
                 </header>
@@ -24,7 +24,7 @@ const App = () => {
                     <Route path="/details/:id" element={<Details />} />
                     <Route path="/" element={<SearchParams />} />
                 </Routes>
-            </QueryclientProvider>
+            </QueryClientProvider>
         </BrowserRouter>
     )
 }

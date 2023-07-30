@@ -9,7 +9,7 @@ const Details = () => {
     if (results.isLoading) {
         return (
             <div className="loading-pane">
-                <h2 className="loader">@</h2>
+                <h2 className="loader">@</h2>   
             </div>
         );
     }
@@ -19,7 +19,9 @@ const Details = () => {
     return (
         <div className="details">
             <h1>{pet.pet}</h1>
-            <h2>{pet.animal}</h2>
+            <h2>{pet.animal} - {pet.breed} - {pet.city}, {pet.state}</h2>
+            <button>Adopt {pet.name}</button>
+            <p>{pet.description}</p>
         </div>
 
     );

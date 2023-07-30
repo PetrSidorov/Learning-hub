@@ -1,5 +1,12 @@
-regex exercises
-local storage
-try - catch - exceptions
-fetch api / http requests
-iterables
+regex exercises +
+local storage +
+try - catch - exceptions +
+fetch api / http requests +
+iterables +
+websockets +
+Service Workers and Progressive Web Apps (PWAs) +
+unit testing +
+Event Loop, Call Stack, and Asynchronous JavaScript
+Prototypal Inheritance
+IIFEs
+Callbacks
