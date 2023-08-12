@@ -27,7 +27,7 @@ Array.prototype.myJoin = function(separator) {
 const elements = ['Fire', 'Air', 'Water'];
 const elementsTest = [null, {'check': 'test'}, undefined];
 
-// console.log(elements.myJoin());
+console.log(elements.myJoin());
 // Expected output: "Fire,Air,Water"
 
 // console.log(elements.myJoin(''));

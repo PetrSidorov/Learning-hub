@@ -10,7 +10,7 @@ forEach
 map
 filter
 reduce
-find
+find + (ready unchecked)
 sort
 reverse
 includes +

@@ -1,101 +1,85 @@
 import { readFileSync } from "fs";
-var treeStore = {};
-const forest = readFileSync("input.txt").toString().split("\n");
-for (let i = 0; i < forest.length; i++) {
-  for (let j = 0; j < forest[i].length; j++) {
-    const key = `${i} ${j}: ${forest[i][j]}`;
-    if (!treeStore[key]) {
-      treeStore[key] = [];
-    }
+let highestScore = 0;
+let test = {};
+var forest = readFileSync("input.txt").toString().split("\n");
+forest = forest.map((row) => row.split("").map(Number));
+for (let row = 0; row < forest.length; row++) {
+  for (let pos = 0; pos < forest[row].length; pos++) {
+    let treeInfo = {
+      tree: forest[row][pos],
+      row,
+      pos,
+    };
 
-    let left = forest[i].slice(0, j).split('').reverse().join();
-    let right = forest[i].slice(j + 1);
-    var idxLeft = 0;
-    for (let k = 0; k < left.length; k++) {
-      if (Number(forest[i][j]) > Number(left[k])) {
-        idxLeft++;
+    let treeScore = getScore(treeInfo);
+    highestScore = treeScore > highestScore ? treeScore : highestScore;
+  }
+
+  function getScore(treeInfo) {
+    return (
+      getRightScore(treeInfo) *
+      getTopScore(treeInfo) *
+      getBottomScore(treeInfo) *
+      getLeftScore(treeInfo)
+    );
+  }
+
+  function getLeftScore(treeInfo) {
+    let partOfRowOnLeft = getRowTreesToCompare(
+      0,
+      treeInfo.pos,
+      treeInfo.row
+    ).reverse();
+    return scoreCounter(treeInfo.tree, partOfRowOnLeft);
+  }
+
+  function getRightScore(treeInfo) {
+    let partOfRowOnRight = getRowTreesToCompare(
+      treeInfo.pos + 1,
+      forest[row].length,
+      treeInfo.row
+    );
+    return scoreCounter(treeInfo.tree, partOfRowOnRight);
+  }
+
+  function getBottomScore(treeInfo) {
+    let columnBelow = getColTreesToCompare(
+      treeInfo.row + 1,
+      forest.length,
+      treeInfo.pos
+    );
+    return scoreCounter(treeInfo.tree, columnBelow);
+  }
+
+  function getTopScore(treeInfo) {
+    let columnAbove = getColTreesToCompare(
+      0,
+      treeInfo.row,
+      treeInfo.pos
+    ).reverse();
+    return scoreCounter(treeInfo.tree, columnAbove);
+  }
+
+  function getColTreesToCompare(start, end, pos) {
+    return forest.slice(start, end).map((row) => row[pos]);
+  }
+
+  function getRowTreesToCompare(start, end, row) {
+    return forest[row].slice(start, end);
+  }
+
+  function scoreCounter(thisTree, treesToCompare) {
+    let score = 0;
+    for (let [pos, tree] of treesToCompare.entries()) {
+      score++;
+      if (tree >= thisTree) {
+        score = pos;
+        score++;
+        break;
       }
     }
-
-    if ( j != 0 && forest[i][j] < 1){
-        idxLeft++
-    }
-    treeStore[key].push({'idxLeft: ': idxLeft});
-
-    let idxRight = 0;
-    for (let k = 0; k < right.length; k++) {
-      if (Number(forest[i][j]) > Number(right[k])) {
-        idxRight++;
-      }
-    }
-    // console.log('forest[i].length',forest[i].length - 1);
-    // console.log('j',j);
-    // console.log('forest[i][j]',forest[i][j]);
-    
-    if ( j != forest[i].length  && forest[i][j] < 1){
-        // console.log('what');
-        // console.log('---------');
-        idxRight++
-    }
-    treeStore[key].push({'idxRight: ': idxRight});
-
-    let columnUp = [];
-    let columnDown = [];
-    for (let k = 0; k < forest.length; k++) {
-      if (k < i) {
-        columnUp.push(forest[k].charAt(j));
-      }
-
-      if (k > i) {
-        columnDown.push(forest[k].charAt(j));
-      }
-    }
-    
-    let idxUp = 0;
-    for (let k = 0; k < columnUp.length; k++) {
-      if (Number(forest[i][j]) > Number(columnUp[k])) {
-        idxUp++;
-      }
-    }
-    
-    if ( i != 0 && forest[i][j] < 1){
-        idxUp++
-    }
-
-    treeStore[key].push({'idxUp: ': idxUp});
-
-    let idxDown = 0;
-    // console.log('columnDown',columnDown);
-    for (let k = 0; k < columnDown.length; k++) {
-        if (Number(forest[i][j]) > Number(columnDown[k])) {
-            idxDown++;
-          }
-    }
-
-    if (i != forest.length && forest[i][j] < 1) {
-        idxDown++;
-      }
-
-    treeStore[key].push({'idxDown: ': idxDown});
+    return score;
   }
 }
 
-// console.log(treeStore)
-const indexesObj = {};
-for ( const tree in treeStore ) {  
-    let idxOverAll = 1
-    for (const treeIndexesObj of treeStore[tree]) {
-        let indexes = Object.values(treeIndexesObj)
-        idxOverAll*=indexes[0]
-    }
-    indexesObj[tree] = idxOverAll;  
-}
-
-// console.log(indexesObj);
-let entries = Object.entries(indexesObj);
-
-entries.sort((a, b) => a[1] - b[1]);
-let sortedObj = Object.fromEntries(entries);
-
-// console.log(sortedObj);
-console.log(-0 === 0);
+console.log("highestScore", highestScore);

@@ -36,4 +36,4 @@ for (let i = 0; i < forest.length; i++){
     }
 }
 }
-// console.log('visibleCount', visibleCount)
+console.log('visibleCount', visibleCount)
