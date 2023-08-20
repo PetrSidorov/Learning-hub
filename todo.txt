@@ -8,5 +8,9 @@ Service Workers and Progressive Web Apps (PWAs) +
 unit testing +
 Event Loop, Call Stack, and Asynchronous JavaScript
 Prototypal Inheritance
-IIFEs
+IIFEs +
 Callbacks
+module pattern - where to use ?
+Tree Shaking (?)
+react suspence (?)
+props destructuring
