@@ -14,4 +14,6 @@ module pattern - where to use ?
 Tree Shaking (?)
 react suspence (?)
 props destructuring
-React.useEffect -built-in hook that allows you to run some custom code after React renders (and re-renders) your component 
+React.useEffect why does it works the way it works in the second hook exercise
+??= and ||= as well as the related &&= operators
+https://epicreact.dev/modules/react-hooks/useeffect-persistent-state-extra-credit-solution-4 - 4:10
