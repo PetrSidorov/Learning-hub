@@ -17,3 +17,10 @@ props destructuring
 React.useEffect why does it works the way it works in the second hook exercise
 ??= and ||= as well as the related &&= operators
 https://epicreact.dev/modules/react-hooks/useeffect-persistent-state-extra-credit-solution-4 - 4:10
+what's a normal distribution, where could you observe the normal distribution
+what's an alpha - beta distribution
+random number generation based on normal distribution (why do you want to use that)
+basic statistic understanding
+a - b tests
+linear algebra (?)
+roman to integer results - explaining

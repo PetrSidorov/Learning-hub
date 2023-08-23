@@ -1,16 +1,20 @@
 // Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 
 // Symbol       Value
-// I             1
+// I:1
 // V             5
 // X             10
 // L             50
 // C             100
 // D             500
 // M             1000
-// For example, 2 is written as II in Roman numeral, just two ones added together. 12 is written as XII, which is simply X + II. The number 27 is written as XXVII, which is XX + V + II.
+// For example, 2 is written as II in Roman numeral, just two ones added together.
+// 12 is written as XII, which is simply X + II. The number 27 is written as XXVII, which is XX + V + II.
 
-// Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+// Roman numerals are usually written largest to smallest from left to right.
+// However, the numeral for four is not IIII. Instead, the number four is written as IV.
+// Because the one is before the five we subtract it making four.
+// The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
 
 // I can be placed before V (5) and X (10) to make 4 and 9.
 // X can be placed before L (50) and C (100) to make 40 and 90.
@@ -31,3 +35,56 @@
 // Input: s = "MCMXCIV"
 // Output: 1994
 // Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+
+// Input: s = "MDCC"
+// Output: 1700
+// Explanation: M = 1000, D = 500, CC = 200
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var romanToInt = function (s) {
+  let number = 0;
+  const romanInt = {
+    IX: 9,
+    IV: 4,
+    XL: 40,
+    XC: 90,
+    CD: 400,
+    CM: 900,
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+
+  for (const roman in romanInt) {
+    if (romanInt.hasOwnProperty(roman)) {
+      const integer = romanInt[roman];
+      const matches = s.match(new RegExp(roman, "g"));
+      if (matches) {
+        for (const match of matches) {
+          number += integer;
+          s = s.replace(match, "");
+        }
+      }
+    }
+  }
+
+  return number;
+};
+
+console.log(romanToInt("MCMXCIV"));
+
+// Runtime
+// Details
+// 119ms
+// Beats 60.68%of users with JavaScript
+// Memory
+// Details
+// 50.50MB
+// Beats 10.71%of users with JavaScript
