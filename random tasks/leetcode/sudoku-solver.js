@@ -14,26 +14,82 @@
  * @return {void} Do not return anything, modify board in-place instead.
  */
 var solveSudoku = function (board) {
-  let boardFormatted = [];
-  for (let i = 0; i < board.length; i++) {
-    boardFormatted.push(board[i]);
+  // let arrayToCheckNumbers = checkAllRowsAndColums(board);
+  // console.log(arrayToCheckNumbers);
+  checkSquares(board);
+  // use below in final v
+  // checkSquares(board, arrayToCheckNumbers);
+
+  function checkAllRowsAndColums(board) {
+    let arrayToCheckNumbers = [];
+    for (let row = 0; row < board.length; row++) {
+      for (
+        let numberPosition = 0;
+        numberPosition < board[row].length;
+        numberPosition++
+      ) {
+        board[row][numberPosition] = {
+          [Math.random().toString(36).substr(2, 9)]: board[row][numberPosition],
+        };
+        if (Object.values(board[row][numberPosition])[0] === ".") {
+          arrayToCheckNumbers.push(
+            checkRowColumnForNumber(board, row, numberPosition)
+          );
+        }
+      }
+    }
+
+    return arrayToCheckNumbers;
   }
-  console.log(boardFormatted);
 };
 
-// solveSudoku([
-//   ["5", "3", ".", ".", "7", ".", ".", ".", "."],
-//   ["6", ".", ".", "1", "9", "5", ".", ".", "."],
-//   [".", "9", "8", ".", ".", ".", ".", "6", "."],
-//   ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
-//   ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
-//   ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
-//   [".", "6", ".", ".", ".", ".", "2", "8", "."],
-//   [".", ".", ".", "4", "1", "9", ".", ".", "5"],
-//   [".", ".", ".", ".", "8", ".", ".", "7", "9"],
-// ]);
-// Given 9x9 grid
-const grid = [
+function checkRowColumnForNumber(board, row, numberPosition) {
+  let objectToCheckNumbers = {};
+  let numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  let numbersOnLeft = board[row].slice(0, numberPosition);
+  let numbersOnTheRight = board[row].slice(numberPosition + 1, row.length);
+  let boardWithoutCurrRow = board.slice();
+  boardWithoutCurrRow.splice(row, 1);
+  const numbersUpAndDown = [];
+
+  for (let i = 0; i < boardWithoutCurrRow.length; i++) {
+    numbersUpAndDown.push(
+      ...boardWithoutCurrRow[i].slice(numberPosition, numberPosition + 1)
+    );
+  }
+
+  let numbersToAvoid = numbersOnLeft.concat(
+    numbersOnTheRight,
+    numbersUpAndDown
+  );
+
+  let valuesToAvoid = numbersToAvoid.map((obj) => Object.values(obj)[0]);
+  let numbersToTry = numbers.filter(
+    (number) => !valuesToAvoid.includes(number)
+  );
+
+  objectToCheckNumbers[Object.keys(board[row][numberPosition])[0]] =
+    numbersToTry;
+
+  return objectToCheckNumbers;
+}
+
+function checkSquares(board, arrayToCheckNumbers) {
+  const boardSplit = [];
+  for (let rowNumber = 0; rowNumber < board.length; rowNumber += 3) {
+    let rowGroup = board.slice(rowNumber, rowNumber + 3);
+    for (let i = 0; i < 3; i++) {
+      boardSplit.push([
+        rowGroup[0].slice(i, i + 3),
+        rowGroup[1].slice(i, i + 3),
+        rowGroup[2].slice(i, i + 3),
+      ]);
+    }
+  }
+  console.log("boardSplit", boardSplit);
+}
+
+solveSudoku([
   ["5", "3", ".", ".", "7", ".", ".", ".", "."],
   ["6", ".", ".", "1", "9", "5", ".", ".", "."],
   [".", "9", "8", ".", ".", ".", ".", "6", "."],
@@ -43,4 +99,16 @@ const grid = [
   [".", "6", ".", ".", ".", ".", "2", "8", "."],
   [".", ".", ".", "4", "1", "9", ".", ".", "5"],
   [".", ".", ".", ".", "8", ".", ".", "7", "9"],
-];
+]);
+// Given 9x9 grid
+// const grid = [
+//   ["5", "3", ".", ".", "7", ".", ".", ".", "."],
+//   ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+//   [".", "9", "8", ".", ".", ".", ".", "6", "."],
+//   ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+//   ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+//   ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+//   [".", "6", ".", ".", ".", ".", "2", "8", "."],
+//   [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+//   [".", ".", ".", ".", "8", ".", ".", "7", "9"],
+// ];
