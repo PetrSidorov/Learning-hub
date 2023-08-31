@@ -15,10 +15,8 @@
  */
 var solveSudoku = function (board) {
   let arrayToCheckNumbers = checkAllRowsAndColums(board);
-  // console.log(arrayToCheckNumbers);
-  // checkSquares(board);
-  // use below in final v
-  checkSquares(board, arrayToCheckNumbers);
+  let finalArrayToCheckNumbers = checkSquares(board, arrayToCheckNumbers);
+  console.log("arrayToCheckNumbers", finalArrayToCheckNumbers);
 
   function checkAllRowsAndColums(board) {
     let arrayToCheckNumbers = [];
@@ -75,7 +73,6 @@ function checkRowColumnForNumber(board, row, numberPosition) {
 }
 
 function checkSquares(board, arrayToCheckNumbers) {
-  console.log(arrayToCheckNumbers);
   const boardSplit = [];
   for (let rowNumber = 0; rowNumber < board.length; rowNumber += 3) {
     let rowGroup = board.slice(rowNumber, rowNumber + 3);
@@ -87,44 +84,32 @@ function checkSquares(board, arrayToCheckNumbers) {
       ]);
     }
   }
-  boardSplit.map(
-    (square) => {
-      console.log("square", square);
-      for (number of arrayToCheckNumbers) {
-        let key = Object.keys(number)[0];
-        square.map((line) => {
-          const match = line.find(
-            (numberObj) => Object.keys(numberObj)[0] === key
+  boardSplit.map((square) => {
+    for (number of arrayToCheckNumbers) {
+      let key = Object.keys(number)[0];
+      square.map((line) => {
+        const match = line.find(
+          (numberObj) => Object.keys(numberObj)[0] === key
+        );
+        if (match) {
+          let numbersToAvoid = new Set();
+          // console.log("square ", square);
+          square.map((line) =>
+            line.map((numberObj) =>
+              numbersToAvoid.add(Object.values(numberObj)[0])
+            )
           );
-          if (match) {
-            let numbersToAvoid = new Set();
-            // console.log("square ", square);
-            square.map((line) =>
-              line.map((numberObj) =>
-                numbersToAvoid.add(Object.values(numberObj)[0])
-              )
-            );
-            numbersToAvoid = [...numbersToAvoid];
-            let finalNumbersToTry = Object.values(number)[0].filter(
-              (number) => !numbersToAvoid.includes(number)
-            );
-            console.log("numbersToAvoid ", numbersToAvoid);
-            console.log("number ", number);
-            console.log("finalNumbersToTry ", finalNumbersToTry);
-            // number = finalNumbersToTry;
-            Object.values(number)[0] = finalNumbersToTry;
-          }
-        });
-      }
-      console.log("arrayToCheckNumbers ", arrayToCheckNumbers);
-    }
-    // square.map(
-    // (line) => console.log("line", line)
-    // line.map((numberObj) => numbersToAvoid.push(Object.values(numberObj)[0]))
-    // )
-  );
+          numbersToAvoid = [...numbersToAvoid];
+          let finalNumbersToTry = Object.values(number)[0].filter(
+            (number) => !numbersToAvoid.includes(number)
+          );
 
-  // console.log("numbersToAvoid", numbersToAvoid);
+          number[key] = finalNumbersToTry;
+        }
+      });
+    }
+  });
+  return arrayToCheckNumbers;
 }
 
 solveSudoku([
