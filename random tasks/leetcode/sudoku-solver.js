@@ -16,8 +16,65 @@
 var solveSudoku = function (board) {
   let arrayToCheckNumbers = checkAllRowsAndColums(board);
   let finalArrayToCheckNumbers = checkSquares(board, arrayToCheckNumbers);
-  console.log("arrayToCheckNumbers", finalArrayToCheckNumbers);
+  let solution = findSolution(board, finalArrayToCheckNumbers);
+  // console.log("arrayToCheckNumbers", finalArrayToCheckNumbers);
 
+  function findSolution(board, finalArrayToCheckNumbers) {
+    loopThroughNumbers(board, finalArrayToCheckNumbers);
+    function loopThroughNumbers(board, finalArrayToCheckNumbers) {
+      // Object.values(numberObject)[0]
+      // console.log("final", finalArrayToCheckNumbers);
+      // start test
+      let testBoards = [];
+      // let testBoard = board.slice();
+      // let matchNumberObj = testBoard.map((row) =>
+      //   row.find((numberObj) => Object.keys(numberObj)[0])
+      // );
+      // Object.values(matchNumberObj)[0] = numbersArray[i];
+      // end test
+      function launchLoop(counter) {
+        for (; counter < finalArrayToCheckNumbers.length; counter++) {
+          var testBoard = board.slice();
+          let numbersArray = Object.values(
+            finalArrayToCheckNumbers[counter]
+          )[0];
+          var key = Object.keys(finalArrayToCheckNumbers[counter])[0];
+          if (numbersArray) {
+            for (let i = 0; i < numbersArray.length; i++) {
+              testBoards.push(findMatchNumberObj(key, board));
+              // console.log("matchNumberObj ", matchNumberObj);
+              // Object.values(matchNumberObj)[0] = numbersArray[i];
+              // console.log("numbersArray", numbersArray[i]);
+              counter += 1;
+              launchLoop(counter);
+            }
+          }
+        }
+        // testBoards.push(testBoard);
+        console.log("testBoards ", JSON.stringify(testBoards, null, 2));
+      }
+      launchLoop(1);
+      function findMatchNumberObj(id, board) {
+        let testBoard = board;
+        let matchNumberObj = null;
+        for (let i = 0; i < testBoard.length; i++) {
+          const row = testBoard[i];
+          for (let j = 0; j < row.length; j++) {
+            const numberObj = row[j];
+            if (Object.keys(numberObj)[0] === id) {
+              matchNumberObj = numberObj;
+              break;
+            }
+          }
+          if (matchNumberObj) {
+            break;
+          }
+        }
+        return testBoard;
+      }
+      // console.log("testBoards ", JSON.stringify(testBoards, null, 2));
+    }
+  }
   function checkAllRowsAndColums(board) {
     let arrayToCheckNumbers = [];
     for (let row = 0; row < board.length; row++) {
