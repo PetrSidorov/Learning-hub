@@ -15,28 +15,30 @@
  */
 var solveSudoku = function (board) {
   boardKV = addKeysAndValuesToBoard(board);
-  // console.log("boardKV ", JSON.stringify(boardKV, null, 2));
+  console.log("boardKV ", JSON.stringify(boardKV, null, 2));
   function addKeysAndValuesToBoard(board) {
     return board.map((row) => {
-      let availableValues = truncateValuesByRow(row);
+      let filteredByRow = truncateValuesByRow(row);
       return row.map((number, index) => {
-        availableValues = truncateValuesByColumn(index, availableValues);
+        let filteredByColumn = truncateValuesByColumn(
+          index,
+          [...filteredByRow],
+          number
+        );
         return {
           key: Math.random().toString(36).substr(2, 9),
           value: number,
-          valuesToTry: availableValues,
+          valuesToTry: filteredByColumn,
         };
       });
     });
   }
 
-  function truncateValuesByColumn(index, availableValues) {
-    // let valuesToTruncate = board.map((row) => row[index]);
-    // console.log("valuesToTruncate ", valuesToTruncate);
-    // availableValues = availableValues.filter(
-    //   (availableNumber) => !valuesToTruncate.includes(availableNumber)
-    // );
-    // console.log("availableValues ", availableValues);
+  function truncateValuesByColumn(index, availableValues, number) {
+    let valuesToTruncate = board.map((row) => row[index]);
+    availableValues = availableValues.filter(
+      (availableNumber) => !valuesToTruncate.includes(availableNumber)
+    );
     return availableValues;
   }
 
