@@ -14,8 +14,23 @@
  * @return {void} Do not return anything, modify board in-place instead.
  */
 var solveSudoku = function (board) {
-  boardKV = addKeysAndValuesToBoard(board);
-  console.log("boardKV ", JSON.stringify(boardKV, null, 2));
+  let boardFormatted = addKeysAndValuesToBoard(board);
+  findSolution(boardFormatted);
+  console.log("boardFormatted ", JSON.stringify(boardFormatted, null, 2));
+
+  function findSolution(board) {
+    for (row of board) {
+      for (numberObj of row) {
+        for (let key in numberObj) {
+          if (numberObj.hasOwnProperty(key) && key == "valuesToTry") {
+            for (number of numberObj[key]) {
+              console.log(number);
+            }
+          }
+        }
+      }
+    }
+  }
   function addKeysAndValuesToBoard(board) {
     return board.map((row) => {
       let filteredByRow = truncateValuesByRow(row);
@@ -25,11 +40,18 @@ var solveSudoku = function (board) {
           [...filteredByRow],
           number
         );
-        return {
-          key: Math.random().toString(36).substr(2, 9),
-          value: number,
-          valuesToTry: filteredByColumn,
-        };
+        if (number === ".") {
+          return {
+            key: Math.random().toString(36).substr(2, 9),
+            value: number,
+            valuesToTry: filteredByColumn,
+          };
+        } else {
+          return {
+            key: Math.random().toString(36).substr(2, 9),
+            value: number,
+          };
+        }
       });
     });
   }
