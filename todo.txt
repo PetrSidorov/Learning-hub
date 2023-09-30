@@ -24,5 +24,8 @@ linear algebra (?)
 roman to integer results - explaining
 Kyle Simpson - algo course
 💯 add game history feature (http://localhost:3000/4) +
-2.10.23:
 what should i do here - https://adventofcode.com/2022/day/9 +
+potential security risks with JavaScript
+protect against Cross-Site Scripting (XSS) attacks
+source maps
+internationalization (i18n) in JavaScript applications
