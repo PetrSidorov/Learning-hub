@@ -29,3 +29,5 @@ potential security risks with JavaScript
 protect against Cross-Site Scripting (XSS) attacks
 source maps
 internationalization (i18n) in JavaScript applications
+-----------
+what is serverless
