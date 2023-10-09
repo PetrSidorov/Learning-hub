@@ -11,6 +11,7 @@
 // Input: strs = ["dog","racecar","car"]
 // Output: ""
 // Explanation: There is no common prefix among the input strings.
+// TODO: review with Artyom, refactor
 /**
  * @param {string[]} strs
  * @return {string}
