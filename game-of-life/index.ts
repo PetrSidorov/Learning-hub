@@ -12,15 +12,26 @@ function createGenerateBoard() {
       Array.from({ length: numberOfCols }, () => false)
     );
     if (count == 1) {
-      board[5][5] = true;
-      board[5][6] = true;
-      board[6][4] = true;
-      board[6][7] = true;
-      board[7][4] = true;
-      board[7][7] = true;
-      board[8][5] = true;
-      board[8][6] = true;
-      board[7][5] = true;
+      // board[5][5] = true;
+      // board[5][6] = true;
+      // board[6][4] = true;
+      // board[6][7] = true;
+      // board[7][4] = true;
+      // board[7][7] = true;
+      // board[8][5] = true;
+      // board[8][6] = true;
+      // board[7][5] = true;
+      for (let i = 6; i <= 14; i++) {
+        board[i][6] = true;
+      }
+      board[5][7] = board[5][8] = board[6][9] = true;
+      board[10][7] = board[10][8] = board[9][9] = true;
+
+      for (let i = 6; i <= 14; i++) {
+        board[i][11] = true;
+      }
+      board[5][12] = board[5][13] = board[6][14] = true;
+      board[10][12] = board[10][13] = board[9][14] = true;
     }
     return board;
   };
@@ -122,4 +133,4 @@ let currentBoard = generateBoard(ROWS, COLS);
 setInterval(() => {
   currentBoard = spawnGeneration(currentBoard);
   document.body.append(renderBoard(spawnGeneration(currentBoard)));
-}, 1000);
+}, 2000);
