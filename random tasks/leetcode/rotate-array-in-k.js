@@ -21,23 +21,25 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var rotate = function (nums, k) {
-  for (let i = 0; i < nums.length; i++) {
-    console.log("nums[nums[i]]: ", nums[i]);
-    // console.log(
-    //   "nums[k + i]: ",
-    //   nums[k + i] ? nums[k + i] : `smth, ${nums[i - nums.length + k]}`
-    // );
-    console.log(
-      "nums[k + i]: ",
-      nums[k - i] ? nums[k - i] : `smth, ${nums[i - nums.length + k]}`
-    );
-    // nums[nums.length - i - 1] = nums[k + i];
-    // nums[i] = nums[k + i] ? nums[k + i] : i - nums.length + k;
+  k %= nums.length;
+  let count = 0;
+
+  for (let start = 0; count < nums.length; start++) {
+    let current = start;
+    let prev = nums[start];
+
+    do {
+      let next = (current + k) % nums.length;
+      let temp = nums[next];
+      nums[next] = prev;
+      prev = temp;
+      current = next;
+      count++;
+    } while (start !== current);
   }
-  console.log(nums);
 };
 
-rotate([1, 2, 3, 4, 5, 6, 7], 3);
+// rotate([1, 2, 3, 4, 5, 6, 7], 3);
 // Output: [5,6,7,1,2,3,4]
 
 // rotate([-1, -100, 3, 99], 2);
