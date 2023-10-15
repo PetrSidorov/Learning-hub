@@ -111,4 +111,4 @@ let currentBoard = generateBoard(ROWS, COLS);
 setInterval(() => {
     currentBoard = spawnGeneration(currentBoard);
     document.body.append(renderBoard(spawnGeneration(currentBoard)));
-}, 2000);
+}, 1000);

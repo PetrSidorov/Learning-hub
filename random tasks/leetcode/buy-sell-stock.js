@@ -5,6 +5,7 @@
 // However, you can buy it then immediately sell it on the same day.
 // Find and return the maximum profit you can achieve.
 
+// TODO: solve
 // Input: prices = [7,1,5,3,6,4]
 // Output: 7
 // Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
@@ -15,58 +16,19 @@
  * @param {number[]} prices
  * @return {number}
  */
-// var maxProfit = function (prices) {
-//   const array = [15, 16, 17, 18, 19];
-
-//   function getMaxAndMin(a, b, index) {
-//     // const getMax = (a, b) => Math.max(a, b);
-//     // const getMin = (a, b) => Math.max(a, b);
-//     // const returns = a + b;
-//     if (a)
-//       console.log(
-//         `accumulator: ${a}, currentValue: ${b}, index: ${index}, returns: ${returns}`
-//       );
-//     return returns;
-//   }
-
-//   prices.reduce(getMaxAndMin);
-// };
-
-// if a < b && index of a > index of maxPrice - a is min Price
-// if a > b && index of b < index of maxPrice - b is max Price
-
 var maxProfit = function (prices) {
-  let minPrice = {
-    value: prices[0],
-    index: 0,
-  };
-  let maxPrice = {
-    value: prices[prices.length - 1],
-    index: prices.length - 1,
-  };
-  //   console.log("maxPrice:", JSON.stringify(maxPrice));
-  //   console.log("minPrice:", JSON.stringify(minPrice));
-
-  for (let i = 0; i < prices.length; i++) {
-    if (prices[i] < minPrice.value && i < maxPrice.index && prices[i]) {
-      minPrice.value = prices[i];
-      minPrice.index = i;
-      //   console.log("minPrice: ", minPrice);
-    }
-
-    if (prices[i] > maxPrice.value && i > minPrice.index && prices[i]) {
-      //   console.log(prices[i]);
-      //   console.log(maxPrice.value);
-      //   console.log(i);
-      //   console.log(minPrice.index);
-      //   console.log(prices[i]);
-      maxPrice.value = prices[i];
-      maxPrice.index = i;
-      //   console.log("maxPrice: ", maxPrice);
+  function checkSellOrBuy(day) {}
+  function buy() {}
+  function sell() {}
+  for (let day = 0; day < prices.length; day++) {
+    let sellOrBuy = checkSellOrBuy(prices[day]);
+    if (sellOrBuy == "HOLD") {
+      break;
+    } else if (sellOrBuy == "BUY") {
+      buy(prices[day]);
+    } else if (sellOrBuy == "SELL") {
+      sell(prices[day]);
     }
   }
-
-  console.log("maxPrice:", JSON.stringify(maxPrice));
-  console.log("minPrice:", JSON.stringify(minPrice));
 };
 maxProfit([7, 1, 5, 3, 6, 4]);
