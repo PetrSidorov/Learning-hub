@@ -52,6 +52,22 @@
  * @return {number}
  */
 var countPrimes = function (n) {
+  function removePow(number) {
+    let k = 2;
+    let indexOfPow = 1;
+    while (indexOfPow > -1) {
+      powNumberToDelete = number * k;
+      console.log("number Pow: ", number);
+      console.log("k: ", k);
+      console.log("powNumberToDelete: ", powNumberToDelete);
+      indexOfPow = allNumbers.indexOf(powNumberToDelete);
+      if (indexOfPow > -1) {
+        allNumbers.splice(indexOfPow, 1);
+        console.log("sucess~");
+      }
+      k++;
+    }
+  }
   let allNumbers = Array.from({ length: n - 2 }, (v, i) => i + 2);
   console.log("allNumbers: ", allNumbers);
   for (let i = 2; i <= n; i++) {
@@ -59,9 +75,10 @@ var countPrimes = function (n) {
       console.log("i, j: ", i, j);
       if (i % j == 0) {
         console.log("i % j:", i % j);
-
         // allNumbers.splice(i, 1);
         let indexOfNum = allNumbers.indexOf(i);
+        let number = allNumbers[indexOfNum];
+        removePow(number);
         if (indexOfNum > -1) {
           allNumbers.splice(indexOfNum, 1);
         }
@@ -72,4 +89,9 @@ var countPrimes = function (n) {
   return allNumbers.length;
 };
 
-console.log(countPrimes(10));
+console.log(countPrimes(499979));
+
+// 6n + 1 or 6n – 1
+// var countPrimes2 = function (n) {
+//   for (let i = 0; i < n; i++) {}
+// };
