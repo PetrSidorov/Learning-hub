@@ -26,17 +26,50 @@
 // (3)2 + 3 + 41 = 53
 // (4)2 + 2 + 41 =  59…..so on
 
+// (0)2 + 0 + 0 = 0
+// (1)2 + 1 + 1 = 3
+// (2)2 + 2 + 1 = 5
+// (3)2 + 3 + 1 = 13
+// (4)2 + 2 + 41 =  59…..so on
+
+// (0)2 + 0 + 1 = 1
+// (0)2 + 0 - 1 = 0
+// -
+// (1)2 + 1 + 1 = 3
+// (1)2 + 1 - 1 = 2
+// -
+// (2)2 + 2 + 1 = 7
+// (2)2 + 2 - 1 = 5
+// -
+// (3)2 + 3 + 1 = 13
+// (3)2 + 3 - 1 = 12
+// -
+// (4)2 + 2 + 1 = 19
+
+// TODO: solution
 /**
  * @param {number} n
  * @return {number}
  */
 var countPrimes = function (n) {
-  let i = 1;
-  while (i <= n) {
-    let prime1 = 6 * i - 1;
-    let prime2 = 6 * i + 1;
-    i++;
+  let allNumbers = Array.from({ length: n - 2 }, (v, i) => i + 2);
+  console.log("allNumbers: ", allNumbers);
+  for (let i = 2; i <= n; i++) {
+    for (let j = 2; j <= Math.sqrt(i); j++) {
+      console.log("i, j: ", i, j);
+      if (i % j == 0) {
+        console.log("i % j:", i % j);
+
+        // allNumbers.splice(i, 1);
+        let indexOfNum = allNumbers.indexOf(i);
+        if (indexOfNum > -1) {
+          allNumbers.splice(indexOfNum, 1);
+        }
+      }
+    }
+    console.log("------");
   }
+  return allNumbers.length;
 };
 
-countPrimes(10);
+console.log(countPrimes(10));
