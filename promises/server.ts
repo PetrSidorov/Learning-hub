@@ -77,9 +77,8 @@ fetchUser().then((user) => console.log(user));
 
 function f() {
   return fetch("hello.com")
-    .then((res) => res.json())
+    .then((res) => res.json().then(json => ({ res, json }))
     .catch((e) => console.error(e))
-
     .then((d) => console.log(d))
     .catch((e) => console.error(e))
     .finally(() => console.log("finally"));
