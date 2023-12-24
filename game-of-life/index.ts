@@ -128,9 +128,9 @@ function spawnGeneration(board: boolean[][]) {
 // setInterval(() => {
 // document.body.append(renderBoard(spawnGeneration(generateBoard(ROWS, COLS))));
 // }, 1000);
-let currentBoard = generateBoard(ROWS, COLS);
+// let currentBoard = generateBoard(ROWS, COLS);
 
-setInterval(() => {
-  currentBoard = spawnGeneration(currentBoard);
-  document.body.append(renderBoard(spawnGeneration(currentBoard)));
-}, 1000);
+// setInterval(() => {
+//   currentBoard = spawnGeneration(currentBoard);
+//   document.body.append(renderBoard(spawnGeneration(currentBoard)));
+// }, 1000);

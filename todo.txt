@@ -42,3 +42,4 @@ this:
 Closure frontend masters exercise
 http://localhost:3000/isolated/exercise/02.js
 Discuss longest common prefix task
+callback and higher order function difference
