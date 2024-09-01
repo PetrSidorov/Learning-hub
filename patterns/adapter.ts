@@ -21,3 +21,5 @@ const adapter = new Adapter(oldSystem);
 
 const result = adapter.newRequest();
 console.log(result); // Output: 'Adapted: Data from the legacy system'
+
+// https://dev.to/alexmercedcoder/oop-design-patterns-in-javascript-3i98
