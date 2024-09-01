@@ -41,7 +41,7 @@ type ValidateType = {
   validate(value: string): boolean;
 };
 
-const validators: Validator[] = [
+const validators: ValidateType[] = [
   {
     validate() {
       return false;
