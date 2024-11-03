@@ -1,0 +1,1 @@
+top level await is avialable in modules only (in browser)
