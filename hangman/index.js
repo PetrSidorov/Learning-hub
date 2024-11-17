@@ -9,6 +9,7 @@ import { fetchWordAction, letterGuessAction } from "./reducer.js";
 import { tryCatch } from "./helpers.js";
 
 async function init() {
+  inputGuess.focus();
   store.subscribe(render);
 
   let [error, word] = await tryCatch(fetchWord());
@@ -21,6 +22,9 @@ async function init() {
 
   buttonGuess.addEventListener("click", (e) => {
     store.dispatch(letterGuessAction(inputGuess.value));
+    inputGuess.value = "";
+    inputGuess.focus();
+    // confirm("Press a button!");
   });
 }
 
