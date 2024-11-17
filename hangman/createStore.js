@@ -1,5 +1,5 @@
-export function createStore(initialState, reducer) {
-  let state = initialState;
+export function createStore(reducer) {
+  let state;
   let subscribers = [];
 
   function getState() {

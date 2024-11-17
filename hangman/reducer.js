@@ -1,5 +1,8 @@
+import { LIVES } from "./config.js";
+
 const WORD_FETCHED = "wordFetched";
 const LETTER_GUESSED = "letterGuessed";
+const NEW_GAME = "newGame";
 
 export const fetchWordAction = (word) => {
   return { type: WORD_FETCHED, payload: word };
@@ -9,14 +12,23 @@ export const letterGuessAction = (letter) => {
   return { type: LETTER_GUESSED, payload: letter };
 };
 
+export const selectRemainingGuesses = (state) => {
+  return LIVES - state.wrongLetters.length;
+};
+
 /**
  * @typedef {
- *   remainingGuesses: number;
  *   word: string | null;
  *   displayLetters: string[];
  *   wrongLetters: string[];
  * } HangmanState
  */
+
+const initialState = {
+  word: null,
+  displayLetters: [],
+  wrongLetters: [],
+};
 
 /**
  *
@@ -24,7 +36,11 @@ export const letterGuessAction = (letter) => {
  * @param {HangmanAction} action
  * @returns
  */
-export function reducer(state, action) {
+export function reducer(state = initialState, action) {
+  if (action.type == NEW_GAME) {
+    return initialState;
+  }
+
   if (action.type == WORD_FETCHED) {
     const word = action.payload;
     console.log("word ", word);
@@ -33,7 +49,7 @@ export function reducer(state, action) {
 
   if (action.type == LETTER_GUESSED) {
     const letter = action.payload;
-    // console.log("state.displayLetters ", state.displayLetters);
+
     if (
       state.wrongLetters.includes(letter) ||
       state.displayLetters.includes(letter)
@@ -43,7 +59,6 @@ export function reducer(state, action) {
 
     const displayLettersCopy = [...state.displayLetters];
     let wrongLettersCopy = [...state.wrongLetters];
-    let remainingGuesses = state.remainingGuesses;
     let matchFound = false;
 
     for (let i = 0; i < state.word.length; i++) {
@@ -55,18 +70,7 @@ export function reducer(state, action) {
 
     if (!matchFound) {
       wrongLettersCopy.push(letter);
-      remainingGuesses--;
     }
-
-    // let a = 1;
-    // let b = 2;
-
-    // x = x xor y
-    // y = x xor y
-    // x = x xor y
-
-    // const displayLetters = state.displayLetters.map((_, index) => letter == state.word[index] ? letter : _);
-    // const matchFound = state.word.includes(letter) ? -1
 
     return {
       ...state,
