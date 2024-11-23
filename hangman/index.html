@@ -12,10 +12,23 @@
     <main>
       <p id="remainingGuesses"></p>
       <p id="wordDisplay" class="word-display"></p>
-      <p id=""></p>
-      <input type="text" id="inputGuess" maxlength="1" minlength="1" />
-      <button id="buttonGuess">Guess</button>
-      <button id="buttonNewGame">New game</button>
+      <p id="gameStatus"></p>
+      <div class="formsWrapper">
+        <form id="formGuess">
+          <input
+            required
+            autofocus
+            type="text"
+            name="letter"
+            maxlength="1"
+            minlength="1"
+          />
+          <button type="submit">Guess</button>
+        </form>
+        <form id="formNewGame">
+          <button id="buttonNewGame" type="submit">New game</button>
+        </form>
+      </div>
     </main>
   </body>
 </html>

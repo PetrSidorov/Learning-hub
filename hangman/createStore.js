@@ -12,6 +12,10 @@ export function createStore(reducer) {
   }
 
   function dispatch(action) {
+    if (typeof action == "function") {
+      return action(dispatch);
+    }
+
     state = reducer(state, action);
     subscribers.forEach((fn) => fn());
   }

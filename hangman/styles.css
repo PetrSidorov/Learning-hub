@@ -1,3 +1,17 @@
+:root {
+  --control-gap: 5px;
+}
+
 .word-display {
   letter-spacing: 2px;
+}
+
+form {
+  display: flex;
+  gap: var(--control-gap);
+}
+
+.formsWrapper {
+  display: flex;
+  gap: var(--control-gap);
 }
