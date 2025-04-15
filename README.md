@@ -17,7 +17,7 @@ This repository contains a variety of JavaScript resources including:
 The repository is a work in progress, and while it's not organized yet, you might find:
 
 - `/game-of-life` - My take on Conway's game of life
-- `/frontend-masters` - Frontend masters realted materials
+- `/frontend-masters` - Frontend masters related materials
 - `/quiz` - Javascript quiz materials! I should probably delete answers
 - `/patterns` - Exploring common software design patterns
 
