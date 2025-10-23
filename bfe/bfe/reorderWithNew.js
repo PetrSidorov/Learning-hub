@@ -1,5 +1,6 @@
 
 // Suppose we have an array of items - A, and another array of indexes in numbers - B
+// https://bigfrontend.dev/problem/reorder-array-with-new-indexes
 //
 // const A = ['A', 'B', 'C', 'D', 'E', 'F']
 // const B = [1,   5,   4,   3,   2,   0]
@@ -19,7 +20,11 @@
  * @return {void}
  */
 function sort(items, newOrder) {
-  return Array.from(newOrder, (i, index) => items[i])
+  let orig = items.slice()
+  for (let i = 0; i < items.length; i++) {
+    items[newOrder[i]] = orig[i]
+  }
+  return items
 }
 
 const A = ['A', 'B', 'C', 'D', 'E', 'F']
